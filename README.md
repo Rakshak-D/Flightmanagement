@@ -54,15 +54,17 @@ This repository contains the implementation of a **Flight Information Display Sy
 1. Clone the repository:  
    ```bash
    git clone https://github.com/Rakshak-D/Flightmanagement.git
-   cd Flightmanagement 
    ```  
-
-2. Compile the code:  
+2. Change the directory:  
+   ```bash
+   cd Flightmanagement 
+   ``` 
+3. Compile the code:  
    ```bash
    gcc FLIGHT.c -o flight_system
    ```  
 
-3. Run the program:  
+4. Run the program:  
    ```bash
    ./flight_system
    ```  
