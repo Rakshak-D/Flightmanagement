@@ -51,7 +51,6 @@ int choice();
 //Main function
 int main()
 {
-    int flightn=20;
     //fetching all files
     files();
     userdata();
