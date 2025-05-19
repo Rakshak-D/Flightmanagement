@@ -1,5 +1,4 @@
 
----
 
 # Flight Information System
 
@@ -18,26 +17,26 @@ A C-based Flight Information System for managing flight details, user accounts, 
 ### ✈️ Flight Management
 - Displays all available flights with details (Flight ID, Source, Destination, Times, Fare).
 - Searches flights from a specific source city.
-- Finds direct and indirect flights between source and destination, including total fare and time for indirect routes.
-- Identifies the cheapest indirect flight with checkpoints and flight IDs.
+- Finds direct and indirect flights between source and destination, including total fare and time.
+- Identifies the cheapest indirect flight with optimized calculation.
 
 ### 👤 User Management
-- Supports user account creation with username, email, and password validation.
-- Provides login functionality using username/email and password, with error handling for incorrect credentials.
-- Stores user data in a CSV file for persistence.
+- Supports user account creation with robust validation for username, email, and password.
+- Provides secure login with username/email and password, limiting attempts for security.
+- Stores user data in a CSV file with sanitization to prevent formatting issues.
 
 ### 📍 City Management
 - Maintains a list of cities loaded from a CSV file.
-- Allows users to select source and destination cities for flight searches.
+- Allows users to select source and destination cities with improved input handling.
 
 ### 📄 Data Handling
 - Reads flight details, city lists, and user data from CSV files (`FLIGHTDETAILS.csv`, `PLACES.csv`, `Userdetails.csv`).
-- Validates input data and handles file I/O errors gracefully.
-- Stores new user accounts in `Userdetails.csv`.
+- Creates empty CSV files if they don’t exist, with robust error handling.
+- Validates input data to prevent buffer overflows and CSV parsing issues.
 
 ### 🛠️ User Interface
 - Interactive console menu for selecting options (view all flights, search by source, search source-to-destination, logout).
-- Formatted output with tables for flight details and clear prompts for user input.
+- Formatted output with tables for flight details and clear, user-friendly prompts.
 
 ---
 
@@ -45,8 +44,8 @@ A C-based Flight Information System for managing flight details, user accounts, 
 
 ### Prerequisites
 - C compiler (e.g., GCC)
-- Standard C libraries (`stdio.h`, `stdlib.h`, `string.h`)
-- CSV files: `FLIGHTDETAILS.csv`, `PLACES.csv`, `Userdetails.csv`
+- Standard C libraries (`stdio.h`, `stdlib.h`, `string.h`, `ctype.h`)
+- Write permissions in the working directory
 
 ### Setup Instructions
 ```bash
@@ -62,7 +61,7 @@ gcc flight_info_system.c -o flight_info_system
 ```
 
 **Input Requirements:**
-- Prepare the following CSV files in the project root:
+- Prepare the following CSV files in the project root (created automatically if missing):
   - `FLIGHTDETAILS.csv` (format: `FlightID,Source,ArrivalTime,Destination,DepartureTime,FlightTime,Fare`):
     ```
     F001,New York,08:00,London,12:00,4.0,500.00
@@ -82,19 +81,22 @@ gcc flight_info_system.c -o flight_info_system
 
 **Example Run:**
 ```bash
+------------------------------------------------------------
 Welcome to Flight Finder
 Do you have a travel account with us? [Y/N] N
-Lets create your new account :)
+------------------------------------------------------------
+Let's create your new account :)
 Enter Your Username: alice
 Enter your Email Address: alice@example.com
 Enter your Password: securepass123
 Account created successfully!
+------------------------------------------------------------
 Welcome!! alice
-How may i help you
-Select a option
-1. To check all the flights available.
-2. To check all the flights from one place.
-3. To check all the flights from one place to another place.
+How may I help you
+Select an option:
+1. Check all flights available
+2. Check flights from one place
+3. Check flights from one place to another
 4. Logout
 ```
 
@@ -146,7 +148,7 @@ sequenceDiagram
 | **Programming** | C (Standard Library)                       |
 | **Data Input**  | CSV File Parsing                           |
 | **Functionality**| Flight Search, User Authentication         |
-| **Dependencies**| stdio.h, stdlib.h, string.h                |
+| **Dependencies**| stdio.h, stdlib.h, string.h, ctype.h       |
 
 ---
 
@@ -157,8 +159,7 @@ Flightmanagement/
 ├── flight_info_system.c       # Main C program
 ├── FLIGHTDETAILS.csv          # Flight data 
 ├── PLACES.csv                 # City list 
-├── Userdetails.csv            # User data
-├── Flightmanagementreport.pdf # Report of project 
+├── Userdetails.csv            # User data 
 ├── README.md                  # Project documentation
 ├── LICENSE                    # MIT License
 └── .gitignore                 # Git ignore file
@@ -172,6 +173,7 @@ Flightmanagement/
   - `stdio.h` (file I/O and console output)
   - `stdlib.h` (memory management)
   - `string.h` (string operations)
+  - `ctype.h` (character handling)
 
 No external libraries required.
 
@@ -250,3 +252,4 @@ Rakshak D
 - Test with sample CSV files.
 
 ---
+
