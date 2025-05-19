@@ -1,155 +1,252 @@
-# 🚀 Flight Information Display System (FIDS)
-
-Simulating the working of airport FIDS using Data Structures.
 
 ---
 
-## 📌 Project Overview
+# Flight Information System
 
-This repository contains the implementation of a **Flight Information Display System (FIDS)**, developed as part of the **Data Structures and Applications** course at Malnad College of Engineering. The project uses structured programming to efficiently manage and query flight data.
+[![C](https://img.shields.io/badge/C-Standard-blue)](https://en.wikipedia.org/wiki/C_(programming_language))
+[![GitHub Issues](https://img.shields.io/badge/Report_Issues-Here-red)](https://github.com/Rakshak-D/Flightmanagement/issues)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
----
+A C-based Flight Information System for managing flight details, user accounts, and searching flights, including direct and indirect routes with the cheapest indirect flight option.
 
-## 💡 Features
-
-### User Account Management:
-- Secure login and account creation.
-- Password validation with retries for failed attempts.
-
-### Flight Search Options:
-- **Direct Flights:** Find flights directly connecting two cities.
-- **Indirect Flights:** Search for 1-stop and 2-stop connecting flights.
-- **Cheapest Routes:** Identify the most cost-effective flights.
-
-### Comprehensive Data Handling:
-- Load and manage flight, city, and user data from CSV files.
-
-### Interactive User Interface:
-- User-friendly prompts and menu navigation.
+![Flight System Output Preview](https://via.placeholder.com/1500x600.png?text=Flight+Information+System+Output)
 
 ---
 
-## ⚙️ How It Works
+## ✨ Key Features
 
-### Login/Signup
-- Users can log in or create accounts securely.
+### ✈️ Flight Management
+- Displays all available flights with details (Flight ID, Source, Destination, Times, Fare).
+- Searches flights from a specific source city.
+- Finds direct and indirect flights between source and destination, including total fare and time for indirect routes.
+- Identifies the cheapest indirect flight with checkpoints and flight IDs.
 
-### Flight Search Options
-- Browse all flights.
-- Filter flights based on source and destination cities.
-- View route details (travel time and fare).
+### 👤 User Management
+- Supports user account creation with username, email, and password validation.
+- Provides login functionality using username/email and password, with error handling for incorrect credentials.
+- Stores user data in a CSV file for persistence.
 
-### Flight Suggestions
-- Displays all direct and indirect routes with cost calculations.
+### 📍 City Management
+- Maintains a list of cities loaded from a CSV file.
+- Allows users to select source and destination cities for flight searches.
 
----
+### 📄 Data Handling
+- Reads flight details, city lists, and user data from CSV files (`FLIGHTDETAILS.csv`, `PLACES.csv`, `Userdetails.csv`).
+- Validates input data and handles file I/O errors gracefully.
+- Stores new user accounts in `Userdetails.csv`.
 
-## 🛠 Technologies Used
-
-- **Programming Language:** C
-- **Data Structures:** Structures, Arrays
-- **File Handling:** CSV Parsing
-
----
-
-## 📝 **How to Run**  
-
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/Rakshak-D/Flightmanagement.git
-   ```  
-2. Change the directory:  
-   ```bash
-   cd Flightmanagement 
-   ``` 
-3. Compile the code:  
-   ```bash
-   gcc FLIGHT.c -o flight_system
-   ```  
-
-4. Run the program:  
-   ```bash
-   ./flight_system
-   ```  
+### 🛠️ User Interface
+- Interactive console menu for selecting options (view all flights, search by source, search source-to-destination, logout).
+- Formatted output with tables for flight details and clear prompts for user input.
 
 ---
 
-## 📂 File Overview
+## 🚀 Quick Start
 
-1. **FLIGHT.c**
-   - Main program implementing the FIDS logic.
-   - Includes user account management, flight search, and route optimization features.
+### Prerequisites
+- C compiler (e.g., GCC)
+- Standard C libraries (`stdio.h`, `stdlib.h`, `string.h`)
+- CSV files: `FLIGHTDETAILS.csv`, `PLACES.csv`, `Userdetails.csv`
 
-2. **FLIGHTDETAILS.csv**
-   - Stores flight information.
-   - Format: `FlightID, Source, ArrivalTime, Destination, DepartureTime, FlightTime, Fare`
+### Setup Instructions
+```bash
+# Clone repository
+git clone https://github.com/Rakshak-D/Flightmanagement.git
+cd Flightmanagement
 
-3. **PLACES.csv**
-   - Contains the list of cities served by the system.
+# Compile the C program
+gcc flight_info_system.c -o flight_info_system
 
-4. **Userdetails.csv**
-   - Stores user account information: `Username, Email, Password`.
+# Run the program
+./flight_info_system
+```
 
----
+**Input Requirements:**
+- Prepare the following CSV files in the project root:
+  - `FLIGHTDETAILS.csv` (format: `FlightID,Source,ArrivalTime,Destination,DepartureTime,FlightTime,Fare`):
+    ```
+    F001,New York,08:00,London,12:00,4.0,500.00
+    F002,London,13:00,Paris,14:30,1.5,150.00
+    ```
+  - `PLACES.csv` (format: `City`):
+    ```
+    New York
+    London
+    Paris
+    ```
+  - `Userdetails.csv` (format: `Username,Email,Password`):
+    ```
+    john_doe,john@example.com,password123
+    ```
+- Run the program, create/login to a user account, and select options to search flights.
 
-## 📈 Example Output
-
-```plaintext
+**Example Run:**
+```bash
 Welcome to Flight Finder
-Do you have a travel account with us? [Y/N]: Y
-
-Enter username: Rakshak
-Enter password: *********
-
-Welcome Back!! Rakshak
-
-Select an option:
-1. View all available flights.
-2. View flights from a specific source.
-3. View flights from one place to another.
+Do you have a travel account with us? [Y/N] N
+Lets create your new account :)
+Enter Your Username: alice
+Enter your Email Address: alice@example.com
+Enter your Password: securepass123
+Account created successfully!
+Welcome!! alice
+How may i help you
+Select a option
+1. To check all the flights available.
+2. To check all the flights from one place.
+3. To check all the flights from one place to another place.
 4. Logout
-
-DIRECT FLIGHTS:
-Flight ID   Source    Arrival    Destination    Departure   Time   Fare
-FL123       BLR       10:30      DEL            13:30       3.00   5000.00
-
-INDIRECT FLIGHTS:
-**FLIGHT 1**
-Flight ID   Source    Arrival    Destination    Departure   Time   Fare
-FL124       BLR       08:00      BOM            10:00       2.00   2000.00
-**FLIGHT 2**
-Flight ID   Source    Arrival    Destination    Departure   Time   Fare
-FL125       BOM       12:00      DEL            14:00       2.00   2500.00
-
-Cheapest Indirect Flight:
-Checkpoints: BLR -> BOM -> DEL
-Fare: Rs. 4500.00
 ```
 
 ---
 
-## 🧑‍💻 Contributing
+## 🌐 Project Overview
 
-Contributions are welcome! Please follow these steps:
+### System Diagram
+```mermaid
+graph TD
+    A[User] --> B{Authentication}
+    B -->|New User| C[Create Account]
+    B -->|Existing User| D[Login]
+    C --> E[Save to Userdetails.csv]
+    D --> F[Menu Options]
+    F --> G[View All Flights]
+    F --> H[Search by Source]
+    F --> I[Search Source to Destination]
+    G --> J[Read FLIGHTDETAILS.csv]
+    H --> J
+    I --> J
+    I --> K[Calculate Indirect Routes]
+    K --> L[Display Cheapest Flight]
+```
 
+### Execution Flow
+```mermaid
+sequenceDiagram
+    participant User
+    participant Program
+    participant Files
+    
+    User->>Program: Run flight_info_system
+    Program->>Files: Read CSV Files
+    Files-->>Program: Flight, City, User Data
+    User->>Program: Create/Login Account
+    Program->>Files: Save New User (if created)
+    User->>Program: Select Menu Option
+    Program->>Program: Process Flight Search
+    Program->>User: Display Flight Results
+```
+
+---
+
+## 🛠 Technology Stack
+
+| Component       | Technologies                                |
+|-----------------|--------------------------------------------|
+| **Programming** | C (Standard Library)                       |
+| **Data Input**  | CSV File Parsing                           |
+| **Functionality**| Flight Search, User Authentication         |
+| **Dependencies**| stdio.h, stdlib.h, string.h                |
+
+---
+
+## 📂 Repository Structure
+
+```
+Flightmanagement/
+├── flight_info_system.c       # Main C program
+├── FLIGHTDETAILS.csv          # Flight data 
+├── PLACES.csv                 # City list 
+├── Userdetails.csv            # User data
+├── Flightmanagementreport.pdf # Report of project 
+├── README.md                  # Project documentation
+├── LICENSE                    # MIT License
+└── .gitignore                 # Git ignore file
+```
+
+---
+
+## 📝 Core Dependencies
+
+- Standard C libraries (included with any C compiler):
+  - `stdio.h` (file I/O and console output)
+  - `stdlib.h` (memory management)
+  - `string.h` (string operations)
+
+No external libraries required.
+
+---
+
+## 🐛 Issue Reporting
+
+[![GitHub Issues](https://img.shields.io/badge/Report_Issues-Here-red)](https://github.com/Rakshak-D/Flightmanagement/issues)
+
+**Bug Report Template:**
+```markdown
+## Description
+[Describe the issue clearly]
+
+## Reproduction Steps
+1. Run program...
+2. Input credentials/options...
+3. Observe...
+
+**Expected Behavior**
+[What should happen]
+
+**Actual Behavior**
+[What actually happens]
+
+**Environment**
+- OS: [e.g., Windows 11]
+- Compiler: [e.g., GCC 11.4]
+- Input Files: [e.g., CSV contents]
+
+**Additional Context**
+[Screenshots, error messages]
+```
+
+**Issue Labels**
+- `bug` - Code or output errors
+- `enhancement` - New feature requests
+- `documentation` - README or comment improvements
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+
+---
+
+## 📬 Contact & Support
+
+**Project Maintainer**  
+Rakshak D  
+📧 rakshakmce@gmail.com  
+🔗 [GitHub Profile](https://github.com/Rakshak-D)
+
+---
+
+## 🛠️ Development Roadmap
+
+### Next Milestones
+- Add flight booking functionality
+- Support time-based filtering for flights
+- Implement sorting of flights by fare or time
+- Enhance CSV parsing for robustness
+
+### Contribution Guide
 1. Fork the repository.
-2. Create a new branch (`feature/your-feature-name`).
-3. Commit your changes.
-4. Submit a pull request.
+2. Create a feature branch (`git checkout -b feature/new-functionality`).
+3. Commit changes (`git commit -m 'Add new functionality'`).
+4. Push to branch (`git push origin feature/new-functionality`).
+5. Open a Pull Request.
+
+**Code Standards**
+- Follow ANSI C conventions.
+- Include clear comments for functions and logic.
+- Ensure portability across compilers.
+- Test with sample CSV files.
 
 ---
-
-## 📧 Contact
-
-For queries or suggestions, feel free to reach out:
-
-- **Email:** rakshakmce@gmail.com
-- **GitHub:** [@Rakshak-D](https://github.com/Rakshak-D)
-
----
-## ✨ **Contributors**  
-- **Rakshak D** - [@Rakshak-D](https://github.com/Rakshak-D)
-- **Shesha Prasad H** - [@Shesha-Prasad-H](https://github.com/Shesha2705)
-- **Max!!** - [@dizzedbliss](https://github.com/dizziedbliss)
----
-Thank you for visiting! ✈️ Happy coding!
